@@ -1,0 +1,218 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="src/styles.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Search Engine</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row global">
+            <div class="col-sm-9">
+                <form>
+                    <div class="row top">
+                            <input 
+                            class=" col-sm-5 zip-city"
+                            id= "cityInput"
+                            type="text"
+                            autocomplete="off"
+                            placeholder=" 🔍 Enter city or zip code:"
+                            >
+                            <input 
+                            class="search-button"
+                            id = "search-button"
+                            type="submit"
+                            value="search"
+                            >
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input 
+                        class="currentLocation-button"
+                        id = "currentLocation-button"
+                        type="submit"
+                        value=" Use Current Location"
+                        >
+                    </div>
+
+                </div>
+                </form>
+                <div class="row second-line">
+                    <div class="col-4-place">
+                        <h1 class="city" >
+                            📍<span id = "city"> Current Location </span>
+                        </h1>
+                        <p class="date" id="date">
+                            Date, Time
+                        </p>
+                    </div>
+                    <div class="row col-3-together ">
+                        <div class="col-1-emoji">
+                            <img src="images/sun.png" alt="emoji" class="emoji">
+                        </div>
+                        <div class="col-6">
+                            <p class="temperature" >
+                                <span id="currentTempertature">35</span>ºC
+                            </p>
+                            <p class="maxmin">
+                                <span id="maximum"> 37 </span>º/<span id="minimum"> 29 </span>º
+                             </p>
+                            <p class="real">
+                                 Real feel: <span id = "realFeel">28</span>º
+                             </p>
+                        </div>
+                    </div>
+                    <div class=" col-3 features ">
+                        <div> 
+                            <button class = "tempButton celsiusButton" id="toCelsius">
+                                ºC
+                            </button>
+                            <button class = "tempButton fahrenheitButton" id="toFahrenheit">
+                                ºF  
+                                </button>
+                            <br />
+                        </div>
+                        <p class="properties">
+                            Humidity: <span id = "humidity">55</span> %
+                        </p>
+                        <p class="properties">
+                            Wind: <span id = "wind">21</span> km/h
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-11">
+                        <div class="row">
+                            <div class="col-1 col-sm-1">
+                                ≪
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                16h
+                                <br />
+                                ☀️
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                17h
+                                <br />
+                                ☀️
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                18h
+                                <br />
+                                ☀️
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                19h
+                                <br />
+                                ☀️
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                20h
+                                <br />
+                                ☀️
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                21h
+                                <br />
+                                🌥
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                22h
+                                <br />
+                                🌙
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                23h
+                                <br />
+                                🌙
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                0h
+                                <br />
+                                🌙
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                1h
+                                <br />
+                                🌙
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                ≫
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <br />
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="col-1 col-sm-1" id=mondayTemperature>
+                            Mon.    
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                Tue.
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                Wed.
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                Thu.
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                Fri.
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                Sat.
+                            </div>
+                            <div class="col-1 col-sm-1 sunday">
+                                Sun.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1 col-sm-1">
+                                ☀️
+                                <br />
+                                <span class="next-max-min" style="font-size: 9px;"> 37º/29º</span>
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                ☀️
+                                <br />
+                                <span class="next-max-min" style="font-size: 9px;"> 37º/29º</span>
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                ☀️
+                                <br />
+                                <span class="next-max-min" style="font-size: 9px;"> 37º/29º</span>
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                ☀️
+                                <br />
+                                <span class="next-max-min" style="font-size: 9px;"> 37º/29º</span>
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                ☀️
+                                <br />
+                                <span class="next-max-min" style="font-size: 9px;"> 37º/29º</span>
+                            </div>
+                            <div class="col-1 col-sm-1">
+                                ☀️
+                                <br />
+                                <span class="next-max-min" style="font-size: 9px;"> 37º/29º</span>
+                            </div>
+                            <div class="col-1 col-sm-1 sundtemp">
+                                ☀️
+                                <br />
+                                <span class="next-max-min" style="font-size: 9px;"> 37º/29º</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>    
+        </div>
+    </div>
+    <script src="src/index.js"></script>
+</body>
+</html>
