@@ -15,7 +15,7 @@
                 <form>
                     <div class="row top">
                             <input 
-                            class=" col-sm-5 zip-city"
+                            class="zip-city"
                             id= "cityInput"
                             type="text"
                             autocomplete="off"
@@ -53,7 +53,7 @@
                         <div class="col-1-emoji">
                             <img src="images/sun.png" alt="emoji" class="emoji">
                         </div>
-                        <div class="col-6">
+                        <div class="col-4 temp">
                             <p class="temperature" >
                                 <span id="currentTempertature">35</span>ºC
                             </p>
@@ -63,24 +63,22 @@
                             <p class="real">
                                  Real feel: <span id = "realFeel">28</span>º
                              </p>
-                        </div>
-                    </div>
-                    <div class=" col-3 features ">
-                        <div> 
-                            <button class = "tempButton celsiusButton" id="toCelsius">
-                                ºC
-                            </button>
-                            <button class = "tempButton fahrenheitButton" id="toFahrenheit">
-                                ºF  
-                                </button>
-                            <br />
-                        </div>
-                        <p class="properties">
-                            Humidity: <span id = "humidity">55</span> %
-                        </p>
-                        <p class="properties">
-                            Wind: <span id = "wind">21</span> km/h
-                        </p>
+                            </div>
+                                 <div class=" col-3 features "> 
+                                     <button class = "tempButton celsiusButton" id="toCelsius">
+                                     ºC
+                                 </button>
+                                 <button class = "tempButton fahrenheitButton" id="toFahrenheit">
+                                     ºF  
+                                     </button>
+                                 <br />
+                                 <p class="properties">
+                                     Humidity: <span id = "humidity">55</span> %
+                                 </p>
+                                 <p class="properties">
+                                     Wind: <span id = "wind">21</span> km/h
+                                 </p>
+                                 </div>
                     </div>
                 </div>
                 <div class="row">
@@ -148,7 +146,7 @@
                     <br />
                 <div class="row">
                     <div class="col-9">
-                        <div class="row">
+                        <div class="row forecast">
                             <div class="col-1 col-sm-1" id=mondayTemperature>
                             Mon.    
                             </div>
@@ -167,7 +165,7 @@
                             <div class="col-1 col-sm-1">
                                 Sat.
                             </div>
-                            <div class="col-1 col-sm-1 sunday">
+                            <div class="col-1 col-sm-1">
                                 Sun.
                             </div>
                         </div>
@@ -212,9 +210,9 @@
                 </div>    
             </div>   
         </div>
-                <p class = "open-source">
-                    <a href="https://github.com/maria2140/my-weather-proyect"> Open-source code </a> by María Ojie
-                </p> 
+                <small class = "open-source">
+                    <a href="https://github.com/maria2140/my-weather-proyect" target="_black"> Open-source code </a> by María Ojie
+                 </small> 
     </div>
     <script src="src/index.js"></script>
 </body>
