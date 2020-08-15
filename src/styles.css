@@ -18,6 +18,7 @@
 
 .top {
   height: 65px;
+  min-width: max-content;
 }
 
 .zip-city {
