@@ -19,7 +19,6 @@
 .top {
   height: 65px;
   min-width: max-content;
-  width: auto;
 }
 
 .zip-city {
@@ -42,7 +41,7 @@
   margin-left: 5px;
   margin-top: 30px;
   margin-right: 5px;
-  height: auto;
+  height: max-content;
 }
 .search-button:hover {
   background-color: #d4d4d4;
