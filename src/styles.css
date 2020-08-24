@@ -1,3 +1,6 @@
+p::first-letter {
+text-transform: uppercase;
+}
 .col-sm-9 {
   background-image: linear-gradient(
     to top,
@@ -85,6 +88,15 @@
 .date {
   color: #ffffffd2;
   font-size: 15px;
+  font-weight: 500;
+  height: min-content;
+  margin-left: 30px;
+  margin-bottom: 5px;
+}
+
+.weatherDescription{
+  color: #ffffffd2;
+  font-size: 13px;
   font-weight: 500;
   height: min-content;
   margin-left: 30px;
