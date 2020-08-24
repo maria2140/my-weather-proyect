@@ -22,6 +22,8 @@ function uploadData (response){
     city.innerHTML = (response.data.name);
     let currentTempertature = document.querySelector("#currentTempertature");
     currentTempertature.innerHTML = Math.round(response.data.main.temp);
+    let weatherDescription = document.querySelector("#description");
+    weatherDescription.innerHTML = response.data.weather[0].description;
     let realFeel = document.querySelector("#realFeel");
     realFeel.innerHTML = Math.round(response.data.main.feels_like);
     let maximum = document.querySelector("#maximum")
@@ -32,6 +34,10 @@ function uploadData (response){
     humidity.innerHTML = (response.data.main.humidity);
     let wind = document.querySelector("#wind");
     wind.innerHTML = (response.data.wind.speed);
+
+    celsiusTemperature = response.data.main.temp;
+
+
 }
 
 
@@ -53,6 +59,8 @@ function showCurrentCity (response){
     city.innerHTML = (response.data.name); 
     let currentTempertature = document.querySelector("#currentTempertature");
     currentTempertature.innerHTML = Math.round(response.data.main.temp);
+    let weatherDescription = document.querySelector("#description");
+    weatherDescription.innerHTML = response.data.weather[0].description;
     let realFeel = document.querySelector("#realFeel");
     realFeel.innerHTML = Math.round(response.data.main.feels_like);
     let maximum = document.querySelector("#maximum")
@@ -63,6 +71,9 @@ function showCurrentCity (response){
     humidity.innerHTML = (response.data.main.humidity);
     let wind = document.querySelector("#wind");
     wind.innerHTML = (response.data.wind.speed);
+
+    celsiusTemperature = response.data.main.temp;
+
 
 }
 
@@ -120,23 +131,24 @@ showTime();
 // Challenge 3
 
 
-    let fahrenheitButton = document.querySelector("#toFahrenheit");
-    fahrenheitButton.addEventListener("click", toFahrenheit);
 
-        function toFahrenheit (event) {
-            event.preventDefault();
-            let fahrenheitTemperature = document.querySelector("#currentTempertature");
-            fahrenheitTemperature.innerHTML = "95";
-        }
+function toFahrenheit (event) {
+  event.preventDefault();
+  let fahrenheitElement = document.querySelector("#currentTempertature");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  fahrenheitElement.innerHTML = Math.round(fahrenheitTemperature);
+}
 
+function toCelsius (event) {
+  event.preventDefault();
+  let celsiusElement = document.querySelector("#currentTempertature");
+  celsiusElement.innerHTML = Math.round(celsiusTemperature);
+}
 
-    let celsiusButton = document.querySelector("#toCelsius");
-    celsiusButton.addEventListener("click", toCelsius);
+  let fahrenheitButton = document.querySelector("#toFahrenheit");
+  fahrenheitButton.addEventListener("click", toFahrenheit);
 
-        function toCelsius (event) {
-            event.preventDefault();
-            let celsiusTemperature = document.querySelector("#currentTempertature");
-            celsiusTemperature.innerHTML = "35";
-        }
-
-
+  let celsiusButton = document.querySelector("#toCelsius");
+  celsiusButton.addEventListener("click", toCelsius);
+  
+let celsiusTemperature = null;
