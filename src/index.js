@@ -1,24 +1,76 @@
 // Challenge 1 
-function displayForecast(response){
+function displayHourlyForecast(response){
   let forecastElement = document.querySelector("#hourlyForecast");
   
-  console.log(response);
-  console.log(response.data.list[0]);
+  let forecast = response.data.list[0];
+  forecastElement.innerHTML =  `                           
+  <div class="col-1 col-sm-1">
+  ${formatHours(forecast.dt * 1000)}h
+  <br />
+  ☀️
+  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  </div>
+  `;
 
+  forecast = response.data.list[1];
+  forecastElement.innerHTML +=  `                           
+  <div class="col-1 col-sm-1">
+  ${formatHours(forecast.dt * 1000)}h
+  <br />
+  ☀️
+  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  </div>
+  `;
 
-  for (let index = 0; index < 7; index++){
-    let forecast = response.data.list[index];
-    forecastElement.innerHTML =  forecastElement.innerHTML +
-    `                           
-    <div class="col-1 col-sm-1">
-    ${formatHours(forecast.dt * 1000)}h
+  forecast = response.data.list[2];
+  forecastElement.innerHTML +=  `                           
+  <div class="col-1 col-sm-1">
+  ${formatHours(forecast.dt * 1000)}h
+  <br />
+  ☀️
+  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  </div>
+  `;
 
-    <br />
+  forecast = response.data.list[3];
+  forecastElement.innerHTML +=  `                           
+  <div class="col-1 col-sm-1">
+  ${formatHours(forecast.dt * 1000)}h
+  <br />
+  ☀️
+  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  </div>
+  `;
 
-    <span class="next-max-min" style="font-size: 9px;"> <img>  ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
-    </div>` 
+  forecast = response.data.list[4];
+  forecastElement.innerHTML +=  `                           
+  <div class="col-1 col-sm-1">
+  ${formatHours(forecast.dt * 1000)}h
+  <br />
+  ☀️
+  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  </div>
+  `;
 
-  }
+  forecast = response.data.list[5];
+  forecastElement.innerHTML +=  `                           
+  <div class="col-1 col-sm-1">
+  ${formatHours(forecast.dt * 1000)}h
+  <br />
+  ☀️
+  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  </div>
+  `;
+
+  forecast = response.data.list[6];
+  forecastElement.innerHTML +=  `                           
+  <div class="col-1 col-sm-1">
+  ${formatHours(forecast.dt * 1000)}h
+  <br />
+  ☀️
+  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  </div>
+  `;
 
 }
 
@@ -30,6 +82,73 @@ function formatHours (timestamp){
     hours = `0${hours}`;
   }
   return `${hours}`;
+}
+
+
+function displayDailyForecast(response){
+  console.log(response);
+  
+  let forecastElement = document.querySelector("#dailyForecast");
+  
+  let forecast = response.data.list[7];
+  forecastElement.innerHTML =  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
+  <br/>
+  </div>
+  `;
+  
+  forecast = response.data.list[15];
+  console.log(forecast);
+  forecastElement.innerHTML +=  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
+  </div>
+  `
+  forecast = response.data.list[23];
+  console.log(forecast);
+  forecastElement.innerHTML +=  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
+  </div>
+  `
+  forecast = response.data.list[31];
+  console.log(forecast);
+  forecastElement.innerHTML +=  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
+  </div>
+  `
+  forecast = response.data.list[38];
+  console.log(forecast);
+  forecastElement.innerHTML +=  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
+  </div>
+  `
+}
+
+function formatDays (timestamp){
+  let dt = new Date(timestamp);
+  console.log
+  let days = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
+  let day = days[dt.getDay()];
+  return `${day}`;
 }
 
 
@@ -45,11 +164,13 @@ function search(event){
     let units = "metric"
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
     
-    axios.get(`${apiUrl}`).then(uploadData);
-
+    axios.get(`${apiUrl}`).then(uploadData );
 
     apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
-    axios.get(`${apiUrl}`).then(displayForecast);
+    axios.get(`${apiUrl}`).then(displayHourlyForecast);
+
+    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
+    axios.get(`${apiUrl}`).then(displayDailyForecast);
 
 }
 
@@ -77,8 +198,12 @@ function uploadData (response){
   humidity.innerHTML = (response.data.main.humidity);
   let wind = document.querySelector("#wind");
   wind.innerHTML = (response.data.wind.speed);
+
   celsiusTemperature = response.data.main.temp;
-  
+
+  let icon = document.querySelector("#icon");
+  icon.setAttribute("src", `https://image.flaticon.com/icons/svg/1163/1163662.svg`);
+  icon.setAttribute("alt", response.data.weather[0].description );
   
 }
 
@@ -115,6 +240,7 @@ function showCurrentCity (response){
   wind.innerHTML = (response.data.wind.speed);
   
   celsiusTemperature = response.data.main.temp;
+  
   
   
 }
@@ -179,13 +305,13 @@ function toFahrenheit (event) {
   event.preventDefault();
   let fahrenheitElement = document.querySelector("#currentTempertature");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  fahrenheitElement.innerHTML = Math.round(fahrenheitTemperature);
+  fahrenheitElement.innerHTML = `${Math.round(fahrenheitTemperature)} F`;
 }
 
 function toCelsius (event) {
   event.preventDefault();
   let celsiusElement = document.querySelector("#currentTempertature");
-  celsiusElement.innerHTML = Math.round(celsiusTemperature);
+  celsiusElement.innerHTML = `${Math.round(celsiusTemperature)} C`;
 }
 
   let fahrenheitButton = document.querySelector("#toFahrenheit");

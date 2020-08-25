@@ -34,6 +34,9 @@ text-transform: uppercase;
   max-width: 280px;
   width: 750px;  
 }
+input.zip-city {
+  color:#727272;
+}
 
 .search-button {
   background-color: #efefef;
@@ -102,8 +105,8 @@ text-transform: uppercase;
   margin-left: 30px;
 }
 
-.emoji {
-  height: 50px;
+.weatherIcon {
+  height: 45px;
 }
 .col-1-emoji {
   margin-left: 10px;
@@ -112,7 +115,9 @@ text-transform: uppercase;
 }
 
 .col-4.temp {
-  max-width: 100%;
+  max-width: max-content;
+  padding-right: 0px;
+  padding-left: 10px;
 }
 
 .temperature {
@@ -191,6 +196,7 @@ text-transform: uppercase;
   border-style: ridge;
   margin: 0 auto;
   margin-top: 10px;
+  position: relative;
 }
 .col-1.col-sm-1 {
   color: #ffffffbb;
@@ -199,7 +205,7 @@ text-transform: uppercase;
   text-align: center;
 }
 
-.col-1.col-sm-1.sundtemp {
+.col-1.col-sm-1.hourlySunday {
   min-width: max-content;
 }
 
