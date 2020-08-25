@@ -1,5 +1,4 @@
 // API 
-
 function search(event){
     event.preventDefault();
     let searchLine = document.querySelector("#cityInput");
@@ -289,9 +288,7 @@ function showTime() {
 }
 showTime();
 
-
-
-// CUnit convertion
+// Unit convertion
 function toFahrenheit (event) {
   event.preventDefault();
   let fahrenheitElement = document.querySelector("#currentTempertature");
