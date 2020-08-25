@@ -185,7 +185,7 @@ function uploadData (response){
   let city = document.querySelector("#city");
   city.innerHTML = (response.data.name);
   let currentTempertature = document.querySelector("#currentTempertature");
-  currentTempertature.innerHTML = Math.round(response.data.main.temp);
+  currentTempertature.innerHTML = `${Math.round(response.data.main.temp)} ºC`;
   let weatherDescription = document.querySelector("#description");
   weatherDescription.innerHTML = response.data.weather[0].description;
   let realFeel = document.querySelector("#realFeel");
@@ -225,7 +225,7 @@ function showCurrentCity (response){
   let city = document.querySelector("#city");
   city.innerHTML = (response.data.name); 
   let currentTempertature = document.querySelector("#currentTempertature");
-  currentTempertature.innerHTML = Math.round(response.data.main.temp);
+  currentTempertature.innerHTML = `${Math.round(response.data.main.temp)} ºC`;
   let weatherDescription = document.querySelector("#description");
   weatherDescription.innerHTML = response.data.weather[0].description;
   let realFeel = document.querySelector("#realFeel");
@@ -305,13 +305,13 @@ function toFahrenheit (event) {
   event.preventDefault();
   let fahrenheitElement = document.querySelector("#currentTempertature");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  fahrenheitElement.innerHTML = `${Math.round(fahrenheitTemperature)} F`;
+  fahrenheitElement.innerHTML = `${Math.round(fahrenheitTemperature)} ºF`;
 }
 
 function toCelsius (event) {
   event.preventDefault();
   let celsiusElement = document.querySelector("#currentTempertature");
-  celsiusElement.innerHTML = `${Math.round(celsiusTemperature)} C`;
+  celsiusElement.innerHTML = `${Math.round(celsiusTemperature)} ºC`;
 }
 
   let fahrenheitButton = document.querySelector("#toFahrenheit");
