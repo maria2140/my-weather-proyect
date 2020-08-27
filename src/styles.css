@@ -2,15 +2,7 @@ p::first-letter {
 text-transform: uppercase;
 }
 .col-sm-9 {
-  background-image: linear-gradient(
-    to top,
-    #69d5df,
-    #57cad9,
-    #43bfd4,
-    #2bb4cf,
-    #00a9c9
-    );
-  border: solid 1px #e6e5e5c2;
+  background-image: linear-gradient(to top, #0aacca, #0aacca, #0aacca, #09acc9, #09acc9);  border: solid 1px #e6e5e5c2;
   border-radius: 20px;
   margin-top: 20px;
   height: 620px;
@@ -117,7 +109,7 @@ width: 545px;
 }
 
 .weatherIcon {
-  height: 70px;
+  height: 60px;
 }
 
 .col-2.temp {
@@ -249,8 +241,12 @@ width: 545px;
   font-size: 7px;
 }
 
+.div-source{
+ height: 17px;
+ min-width: max-content;
+}
 
 .open-source{
-  font-size: 10px;
+  font-size: 11px;
   margin-left: 25px;
 }

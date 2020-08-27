@@ -31,11 +31,50 @@ function showSearchedLocation (response){
   let displayWind = document.querySelector("#wind");
   let currentWind = response.data.wind.speed;
   displayWind.innerHTML = `${currentWind} km/h`;
-  
-  let searchedIcon = document.querySelector("#icon");
-  searchedIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-  icon.setAttribute("alt", response.data.weather[0].description );
-  
+
+  let icon = document.querySelector("#icon");
+
+  let imageValue = "";
+    if (response.data.weather[0].icon === "01d"){
+      imageValue = 1163662;
+    } else if(response.data.weather[0].icon === "02d"){
+      imageValue = 1163661;
+    } else if(response.data.weather[0].icon === "03d"){
+      imageValue = 1163624;
+    } else if(response.data.weather[0].icon === "04d"){
+      imageValue = 1163634;
+    } else if(response.data.weather[0].icon === "09d"){
+      imageValue = 1163626;
+    } else if(response.data.weather[0].icon === "10d"){
+      imageValue = 1163657;
+    } else if(response.data.weather[0].icon === "11d"){
+      imageValue = 1163636;
+    } else if(response.data.weather[0].icon === "13d"){
+      imageValue = 1163654;
+    } else if(response.data.weather[0].icon === "50d"){
+      imageValue = 1163640;
+    } else if(response.data.weather[0].icon === "01n"){
+      imageValue = 1163645;
+    } else if(response.data.weather[0].icon === "02n"){
+      imageValue = 1163625;
+    } else if(response.data.weather[0].icon === "03n"){
+      imageValue = 1163624;
+    } else if(response.data.weather[0].icon === "04n"){
+      imageValue = 1163634;
+    } else if(response.data.weather[0].icon === "09n"){
+      imageValue = 1163626;
+    } else if(response.data.weather[0].icon === "10n"){
+      imageValue = 1163644;
+    } else if(response.data.weather[0].icon === "11n"){
+      imageValue = 1163636;
+    } else if(response.data.weather[0].icon === "13"){
+      imageValue = 1163654;
+    } else if(response.data.weather[0].icon === "50n"){
+      imageValue = 1163640;
+  }
+
+  icon.setAttribute("src", `https://image.flaticon.com/icons/svg/1163/${imageValue}.svg`)
+
   celsiusTemperature = response.data.main.temp;
   celsiusMaximum = response.data.main.temp_max;
   celsiusMinimum = response.data.main.temp_min;
@@ -111,9 +150,49 @@ function showCurrentLocation (response){
   
 
 
-  let currentIcon = document.querySelector("#icon");
-  currentIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-  icon.setAttribute("alt", response.data.weather[0].description );
+  let icon = document.querySelector("#icon");
+
+  let imageValue = "";
+    if (response.data.weather[0].icon === "01d"){
+      imageValue = 1163662;
+    } else if(response.data.weather[0].icon === "02d"){
+      imageValue = 1163661;
+    } else if(response.data.weather[0].icon === "03d"){
+      imageValue = 1163624;
+    } else if(response.data.weather[0].icon === "04d"){
+      imageValue = 1163634;
+    } else if(response.data.weather[0].icon === "09d"){
+      imageValue = 1163626;
+    } else if(response.data.weather[0].icon === "10d"){
+      imageValue = 1163657;
+    } else if(response.data.weather[0].icon === "11d"){
+      imageValue = 1163636;
+    } else if(response.data.weather[0].icon === "13d"){
+      imageValue = 1163654;
+    } else if(response.data.weather[0].icon === "50d"){
+      imageValue = 1163640;
+    } else if(response.data.weather[0].icon === "01n"){
+      imageValue = 1163645;
+    } else if(response.data.weather[0].icon === "02n"){
+      imageValue = 1163625;
+    } else if(response.data.weather[0].icon === "03n"){
+      imageValue = 1163624;
+    } else if(response.data.weather[0].icon === "04n"){
+      imageValue = 1163634;
+    } else if(response.data.weather[0].icon === "09n"){
+      imageValue = 1163626;
+    } else if(response.data.weather[0].icon === "10n"){
+      imageValue = 1163644;
+    } else if(response.data.weather[0].icon === "11n"){
+      imageValue = 1163636;
+    } else if(response.data.weather[0].icon === "13"){
+      imageValue = 1163654;
+    } else if(response.data.weather[0].icon === "50n"){
+      imageValue = 1163640;
+  }
+
+  icon.setAttribute("src", `https://image.flaticon.com/icons/svg/1163/${imageValue}.svg`)
+
 
   celsiusTemperature = response.data.main.temp;
   celsiusMaximum = response.data.main.temp_max;
@@ -162,18 +241,58 @@ function displayHourlyForecast(response){
     forecastElement.innerHTML = null;
     let forecast = null; 
     for (let index = 3; index < 10; index++) {
+
+      let imageValue = "";
+      if (response.data.hourly[index].weather[0].icon === "01d"){
+        imageValue = 1163662;
+      } else if(response.data.hourly[index].weather[0].icon === "02d"){
+        imageValue = 1163661;
+      } else if(response.data.hourly[index].weather[0].icon === "03d"){
+        imageValue = 1163624;
+      } else if(response.data.hourly[index].weather[0].icon === "04d"){
+        imageValue = 1163634;
+      } else if(response.data.hourly[index].weather[0].icon === "09d"){
+        imageValue = 1163626;
+      } else if(response.data.hourly[index].weather[0].icon === "10d"){
+        imageValue = 1163657;
+      } else if(response.data.hourly[index].weather[0].icon === "11d"){
+        imageValue = 1163636;
+      } else if(response.data.hourly[index].weather[0].icon === "13d"){
+        imageValue = 1163654;
+      } else if(response.data.hourly[index].weather[0].icon === "50d"){
+        imageValue = 1163640;
+      } else if(response.data.hourly[index].weather[0].icon === "01n"){
+        imageValue = 1163645;
+      } else if(response.data.hourly[index].weather[0].icon === "02n"){
+        imageValue = 1163625;
+      } else if(response.data.hourly[index].weather[0].icon === "03n"){
+        imageValue = 1163624;
+      } else if(response.data.hourly[index].weather[0].icon === "04n"){
+        imageValue = 1163634;
+      } else if(response.data.hourly[index].weather[0].icon === "09n"){
+        imageValue = 1163626;
+      } else if(response.data.hourly[index].weather[0].icon === "10n"){
+        imageValue = 1163644;
+      } else if(response.data.hourly[index].weather[0].icon === "11n"){
+        imageValue = 1163636;
+      } else if(response.data.hourly[index].weather[0].icon === "13"){
+        imageValue = 1163654;
+      } else if(response.data.hourly[index].weather[0].icon === "50n"){
+        imageValue = 1163640;
+    }
         forecast = response.data.hourly[index];
         forecastElement.innerHTML += `                           
         <div class="col-1 col-sm-1 hours">
         ${formatHours(forecast.dt * 1000)}:00
         <br />
-        <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
+        <img class= "forecast-hourly-icon" src="https:////image.flaticon.com/icons/svg/1163/${imageValue}.svg" alt="" />
         <br />
         <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
         </div>
         `;
       }
 }
+
 
 function formatHours (timestamp){
   let date = new Date(timestamp);
@@ -195,12 +314,51 @@ function displayDailyForecast(response){
   let forecast = null; 
 
   for (let index = 1; index < 6; index++) {
+    let imageValue = "";
+    if (response.data.daily[index].weather[0].icon === "01d"){
+      imageValue = 1163662;
+    } else if(response.data.daily[index].weather[0].icon === "02d"){
+      imageValue = 1163661;
+    } else if(response.data.daily[index].weather[0].icon === "03d"){
+      imageValue = 1163624;
+    } else if(response.data.daily[index].weather[0].icon === "04d"){
+      imageValue = 1163634;
+    } else if(response.data.daily[index].weather[0].icon === "09d"){
+      imageValue = 1163626;
+    } else if(response.data.daily[index].weather[0].icon === "10d"){
+      imageValue = 1163657;
+    } else if(response.data.daily[index].weather[0].icon === "11d"){
+      imageValue = 1163636;
+    } else if(response.data.daily[index].weather[0].icon === "13d"){
+      imageValue = 1163654;
+    } else if(response.data.daily[index].weather[0].icon === "50d"){
+      imageValue = 1163640;
+    } else if(response.data.daily[index].weather[0].icon === "01n"){
+      imageValue = 1163645;
+    } else if(response.data.daily[index].weather[0].icon === "02n"){
+      imageValue = 1163625;
+    } else if(response.data.daily[index].weather[0].icon === "03n"){
+      imageValue = 1163624;
+    } else if(response.data.daily[index].weather[0].icon === "04n"){
+      imageValue = 1163634;
+    } else if(response.data.daily[index].weather[0].icon === "09n"){
+      imageValue = 1163626;
+    } else if(response.data.daily[index].weather[0].icon === "10n"){
+      imageValue = 1163644;
+    } else if(response.data.daily[index].weather[0].icon === "11n"){
+      imageValue = 1163636;
+    } else if(response.data.daily[index].weather[0].icon === "13"){
+      imageValue = 1163654;
+    } else if(response.data.daily[index].weather[0].icon === "50n"){
+      imageValue = 1163640;
+  }
+
     forecast = response.data.daily[index];
     forecastElement.innerHTML += `
     <div class="col-1 col-sm-1 days">
     ${formatDays(forecast.dt * 1000)}
     <br/>
-    <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
+    <img class= "forecast-hourly-icon" src="https:////image.flaticon.com/icons/svg/1163/${imageValue}.svg" alt="" />
     <br/>
     <span class="next-max-min first"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
     <br/>
