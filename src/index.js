@@ -1,165 +1,232 @@
-// API 
-function search(event){
-    event.preventDefault();
-    let searchLine = document.querySelector("#cityInput");
-    let city = document.querySelector("#city");
-    city.innerHTML = `${searchLine.value}`;
-    let apiKey = "6e7b473b7e81ef87d8d22f55577a0c3b";
-    let units = "metric"
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
-    
-    axios.get(`${apiUrl}`).then(uploadData );
+// Weather
+function showSearchedLocation (response){
+  
+  let cityName = document.querySelector("#city-name");
+  cityName.innerHTML = response.data.name;
+  
+  let displayTemp =  document.querySelector("#currentTemp");
+  displayTemp.innerHTML = `${Math.round(response.data.main.temp)} ºC`;
+  
+  let displayWeatherDescription = document.querySelector("#description");
+  let currentWeaatherDescription = response.data.weather[0].description;
+  displayWeatherDescription.innerHTML = currentWeaatherDescription;
+  
+  let displayRealFeel = document.querySelector("#realFeel");
+  let currentRealFeel = Math.round(response.data.main.feels_like);
 
-    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
-    axios.get(`${apiUrl}`).then(displayHourlyForecast);
+  displayRealFeel.innerHTML = currentRealFeel;
+  
+  let displayMaximum = document.querySelector("#maximum");
+  let currentMaximum = Math.round(response.data.main.temp_min);
+  displayMaximum.innerHTML = currentMaximum
+  
+  let displayMinimum = document.querySelector("#minimum");
+  let currentMinimum = Math.round(response.data.main.temp_min);
+  displayMinimum.innerHTML = currentMinimum;
+  
+  let displayHumidity = document.querySelector("#humidity");
+  let currentHumidity = response.data.main.humidity
+  displayHumidity.innerHTML = currentHumidity;
+  
+  let displayWind = document.querySelector("#wind");
+  let currentWind = response.data.wind.speed;
+  displayWind.innerHTML = `${currentWind} km/h`;
+  
+  let currentIcon = document.querySelector("#icon");
+  currentIcon.setAttribute("src", `https://image.flaticon.com/icons/svg/1163/1163662.svg`);
+  icon.setAttribute("alt", response.data.weather[0].description );
+  
+  
+  celsiusTemperature = response.data.main.temp;
+  
+  currentWind = response.data.wind.speed;
+  let lat = response.data.coord.lat;
+  let lon = response.data.coord.lon;
+  let apiKey = "6e7b473b7e81ef87d8d22f55577a0c3b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={daily, minutely, current}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayHourlyForecast);
 
-    apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
-    axios.get(`${apiUrl}`).then(displayDailyForecast);
 
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={hourly, minutely, current}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayDailyForecast);
+}
+
+function defaultCity(city) {
+  let units = "metric"
+  let apiKey = "6e7b473b7e81ef87d8d22f55577a0c3b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+  axios.get(apiUrl).then(showSearchedLocation);
+  console.log(city)
+
+}
+
+function searchedCity(event) {
+  event.preventDefault();
+   let searchLine = document.querySelector("#city-input");
+  searchLine.innerHTML = `${searchLine.value}`;
+  let apiKey = "6e7b473b7e81ef87d8d22f55577a0c3b";
+  let units = "metric"
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
+  axios.get(`${apiUrl}`).then(showSearchedLocation); 
 }
 
 let searchButton = document.querySelector("#search-button");
-searchButton.addEventListener("click", search);
+searchButton.addEventListener("click", searchedCity);
 
-
-// Weather
-
-function uploadData (response){
-  console.log(response)
-  let city = document.querySelector("#city");
-  city.innerHTML = (response.data.name);
-  let currentTempertature = document.querySelector("#currentTempertature");
-  currentTempertature.innerHTML = `${Math.round(response.data.main.temp)} ºC`;
-  let weatherDescription = document.querySelector("#description");
-  weatherDescription.innerHTML = response.data.weather[0].description;
-  let realFeel = document.querySelector("#realFeel");
-  realFeel.innerHTML = Math.round(response.data.main.feels_like);
-  let maximum = document.querySelector("#maximum")
-  maximum.innerHTML = Math.round(response.data.main.temp_max);
-  let minimum = document.querySelector("#minimum");
-  minimum.innerHTML = Math.round(response.data.main.temp_min);
-  let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = (response.data.main.humidity);
-  let wind = document.querySelector("#wind");
-  wind.innerHTML = (response.data.wind.speed);
+function showCurrentLocation (response){
+  let cityName = document.querySelector("#city-name");
+  cityName.innerHTML = response.data.name;
+  
+  let displayTemp =  document.querySelector("#currentTemp");
+  displayTemp.innerHTML = `${Math.round(response.data.main.temp)} ºC`;
+  
+  let displayWeatherDescription = document.querySelector("#description");
+  let currentWeaatherDescription = response.data.weather[0].description;
+  displayWeatherDescription.innerHTML = currentWeaatherDescription;
+  
+  let displayRealFeel = document.querySelector("#realFeel");
+  let currentRealFeel = Math.round(response.data.main.feels_like);
+  displayRealFeel.innerHTML = currentRealFeel;
+  
+  let displayMaximum = document.querySelector("#maximum");
+  let currentMaximum = Math.round(response.data.main.temp_min);
+  displayMaximum.innerHTML = currentMaximum
+  
+  let displayMinimum = document.querySelector("#minimum");
+  let currentMinimum = Math.round(response.data.main.temp_min);
+  displayMinimum.innerHTML = currentMinimum;
+  
+  let displayHumidity = document.querySelector("#humidity");
+  let currentHumidity = response.data.main.humidity
+  displayHumidity.innerHTML = currentHumidity;
+  
+  let displayWind = document.querySelector("#wind");
+  let currentWind = response.data.wind.speed;
+  displayWind.innerHTML = currentWind;
 
   celsiusTemperature = response.data.main.temp;
 
-  let icon = document.querySelector("#icon");
-  icon.setAttribute("src", `https://image.flaticon.com/icons/svg/1163/1163662.svg`);
-  icon.setAttribute("alt", response.data.weather[0].description );
-  
-}
-
-let currentLocationButton = document.querySelector("#currentLocation-button")
-currentLocationButton.addEventListener("click", currentLocation);
-
-function currentLocation(position){
+  let lat = response.data.coord.lat;
+  let lon = response.data.coord.lon;
   let apiKey = "6e7b473b7e81ef87d8d22f55577a0c3b";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=${apiKey}`;
-  axios.get(`${apiUrl}`).then(showCurrentCity);
-  
-}
-navigator.geolocation.getCurrentPosition(currentLocation);
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={daily, minutely, current}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayHourlyForecast);
 
-function showCurrentCity (response){
-  console.log(response);
-  let city = document.querySelector("#city");
-  city.innerHTML = (response.data.name); 
-  let currentTempertature = document.querySelector("#currentTempertature");
-  currentTempertature.innerHTML = `${Math.round(response.data.main.temp)} ºC`;
-  let weatherDescription = document.querySelector("#description");
-  weatherDescription.innerHTML = response.data.weather[0].description;
-  let realFeel = document.querySelector("#realFeel");
-  realFeel.innerHTML = Math.round(response.data.main.feels_like);
-  let maximum = document.querySelector("#maximum")
-  maximum.innerHTML = Math.round(response.data.main.temp_max);
-  let minimum = document.querySelector("#minimum");
-  minimum.innerHTML = Math.round(response.data.main.temp_min);
-  let humidity = document.querySelector("#humidity");
-  humidity.innerHTML = (response.data.main.humidity);
-  let wind = document.querySelector("#wind");
-  wind.innerHTML = (response.data.wind.speed);
-
-  console.log(wind)
-
-  
-  celsiusTemperature = response.data.main.temp;
+  apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={hourly, minutely, current}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayDailyForecast);
 }
 
-// Hourly Forecast 
+function findCurrentLocation(position) {
+  let lat = position.coords.latitude;
+  let long = position.coords.longitude;
+  let units = "metric"
+  let apiKey = "6e7b473b7e81ef87d8d22f55577a0c3b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
+  
+  axios.get(apiUrl).then(showCurrentLocation);
+  console.log(position)
+}
+
+function getCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(findCurrentLocation);
+
+}
+
+let currentLocationButton = document.querySelector("#currentLocation-button");
+currentLocationButton.addEventListener("click", getCurrentLocation);
+
+
+
+//HourlyForecasts
+
 function displayHourlyForecast(response){
+
   let forecastElement = document.querySelector("#hourlyForecast");
   
-  let forecast = response.data.list[0];
+  forecast = response.data.hourly[3];
   forecastElement.innerHTML =  `                           
   <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}h
+  ${formatHours(forecast.dt * 1000)}:00
   <br />
   ☀️
-  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  <br />
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
-  `;
+  `
+  ;
   
-  forecast = response.data.list[1];
+  forecast = response.data.hourly[6];
   forecastElement.innerHTML +=  `                           
   <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}h
+  ${formatHours(forecast.dt * 1000)}:00
   <br />
   ☀️
-  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  <br />
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
-  `;
+  `
+  ;
   
-  forecast = response.data.list[2];
+  forecast = response.data.hourly[9];
   forecastElement.innerHTML +=  `                           
   <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}h
+  ${formatHours(forecast.dt * 1000)}:00
   <br />
   ☀️
-  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  <br />
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
-  `;
+  `
+  ;
   
-  forecast = response.data.list[3];
+  forecast = response.data.hourly[12];
   forecastElement.innerHTML +=  `                           
   <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}h
+  ${formatHours(forecast.dt * 1000)}:00
   <br />
   ☀️
-  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  <br />
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
-  `;
+  `
+  ;;
   
-  forecast = response.data.list[4];
+  forecast = response.data.hourly[15];
   forecastElement.innerHTML +=  `                           
   <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}h
+  ${formatHours(forecast.dt * 1000)}:00
   <br />
   ☀️
-  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  <br />
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
-  `;
+  `
+  ;
   
-  forecast = response.data.list[5];
+  forecast = response.data.hourly[18];
   forecastElement.innerHTML +=  `                           
   <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}h
+  ${formatHours(forecast.dt * 1000)}:00
   <br />
   ☀️
-  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  <br />
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
-  `;
+  `
+  ;
   
-  forecast = response.data.list[6];
+  forecast = response.data.hourly[21];
   forecastElement.innerHTML +=  `                           
   <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}h
+  ${formatHours(forecast.dt * 1000)}:00
   <br />
   ☀️
-  <span class="next-max-min" style="font-size: 9px;">   ${Math.round(forecast.main.temp_max)}º/${Math.round(forecast.main.temp_min)}º</span>
+  <br />
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
-  `;  
+  `
+  ;  
 }
 
 function formatHours (timestamp){
@@ -171,69 +238,109 @@ function formatHours (timestamp){
   return `${hours}`;
 }
 
-// Daily Forecast 
+
+//Daily Forecast
 
 function displayDailyForecast(response){
-  console.log(response);
-  
   let forecastElement = document.querySelector("#dailyForecast");
+
+  console.log(response)
   
-  let forecast = response.data.list[7];
+  let forecast = response.data.daily[1];
   forecastElement.innerHTML =  `
   <div class="col-1 col-sm-1">
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
-  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
   <br/>
   </div>
   `;
+
+  forecast = response.data.daily[1];
+  forecastElement.innerHTML =  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
+  <br/>
+  </div>
+  `
+  ;
+    
+  forecast = response.data.daily[2];
+  forecastElement.innerHTML +=  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
+  </div>
+  `
+  ;
+
+  forecast = response.data.daily[3];
+  forecastElement.innerHTML +=  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
+  </div>
+  `
+  ;
+
+  forecast = response.data.daily[4];
+  forecastElement.innerHTML +=  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
+  </div>
+  `
+  ;
+
+  forecast = response.data.daily[5];
+  forecastElement.innerHTML +=  `
+  <div class="col-1 col-sm-1">
+  ${formatDays(forecast.dt * 1000)}
+  <br/>
+  ☀️
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
+  </div>
+  `
+  ;
   
-  forecast = response.data.list[15];
-  console.log(forecast);
+  forecast = response.data.daily[6];
   forecastElement.innerHTML +=  `
   <div class="col-1 col-sm-1">
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
-  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
-  forecast = response.data.list[23];
-  console.log(forecast);
+  ;
+
+  forecast = response.data.daily[7];
   forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1">
+  <div class="col-1 col-sm-1 dailyLastDay">
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
-  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
-  forecast = response.data.list[31];
-  console.log(forecast);
-  forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  ☀️
-  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
-  </div>
-  `
-  forecast = response.data.list[38];
-  console.log(forecast);
-  forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  ☀️
-  <span class="next-max-min" style="font-size: 12px;"> ${Math.round(forecast.main.temp)}Cº  </span> 
-  </div>
-  `
+  ;
+
+
+
 }
 
 function formatDays (timestamp){
   let dt = new Date(timestamp);
-  console.log
   let days = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
   let day = days[dt.getDay()];
   return `${day}`;
@@ -289,25 +396,29 @@ function showTime() {
 showTime();
 
 // Unit convertion
+
 function toFahrenheit (event) {
   event.preventDefault();
-  let fahrenheitElement = document.querySelector("#currentTempertature");
+  let fahrenheitElement = document.querySelector("#currentTemp");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   fahrenheitElement.innerHTML = `${Math.round(fahrenheitTemperature)} ºF`;
+
+  
 }
 
 function toCelsius (event) {
   event.preventDefault();
-  let celsiusElement = document.querySelector("#currentTempertature");
+  let celsiusElement = document.querySelector("#currentTemp");
   celsiusElement.innerHTML = `${Math.round(celsiusTemperature)} ºC`;
 }
 
-  let fahrenheitButton = document.querySelector("#toFahrenheit");
-  fahrenheitButton.addEventListener("click", toFahrenheit);
+let fahrenheitButton = document.querySelector("#toFahrenheit");
+fahrenheitButton.addEventListener("click", toFahrenheit);
 
-  let celsiusButton = document.querySelector("#toCelsius");
-  celsiusButton.addEventListener("click", toCelsius);
-  
+let celsiusButton = document.querySelector("#toCelsius");
+celsiusButton.addEventListener("click", toCelsius);
+
 let celsiusTemperature = null;
 
-search ("Valencia");
+
+defaultCity("New York");
