@@ -36,15 +36,12 @@ function showSearchedLocation (response){
   searchedIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   icon.setAttribute("alt", response.data.weather[0].description );
   
-  
   celsiusTemperature = response.data.main.temp;
   celsiusMaximum = response.data.main.temp_max;
   celsiusMinimum = response.data.main.temp_min;
   celsiusRealFeel = Math.round(response.data.main.feels_like);
   kmWind = response.data.wind.speed;
 
-
-  
   currentWind = response.data.wind.speed;
   let lat = response.data.coord.lat;
   let lon = response.data.coord.lon;
@@ -261,81 +258,22 @@ function formatHours (timestamp){
 
 function displayDailyForecast(response){
   let forecastElement = document.querySelector("#dailyForecast");
+  forecastElement.innerHTML = null;
+  let forecast = null;
 
-  console.log(response)
-  
-  let forecast = response.data.daily[1];
-  forecastElement.innerHTML =  `
-  <div class="col-1 col-sm-1 days">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
-  <br/>
-  <span class="next-max-min first"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
-  <br/>
-  </div>
-  `;
-
-  
-  forecast = response.data.daily[2];
-  forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1 days">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
-  <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
-  </div>
-  `
-  ;
-  
-  forecast = response.data.daily[3];
-  forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1 days">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
-  <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
-  </div>
-  `
-  ;
-  
-  forecast = response.data.daily[4];
-  forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1 days">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
-  <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
-  </div>
-  `
-  ;
-  
-  forecast = response.data.daily[5];
-  forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1 days">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
-  <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
-  </div>
-  `
-  ;
-  
-  forecast = response.data.daily[6];
-  forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1 days">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
-  <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
-  </div>
-  `
-  ;
+  for (let index = 1; index < 6; index++) {
+    forecast = response.data.daily[index];
+    forecastElement.innerHTML += `
+    <div class="col-1 col-sm-1 days">
+    ${formatDays(forecast.dt * 1000)}
+    <br/>
+    <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
+    <br/>
+    <span class="next-max-min first"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
+    <br/>
+    </div>
+    `;
+  }
 }
 
 function formatDays (timestamp){
