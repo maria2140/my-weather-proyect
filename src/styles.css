@@ -15,7 +15,7 @@ text-transform: uppercase;
   margin-top: 20px;
   height: 620px;
   margin-left: 20px;
-  min-width: 400px;
+  min-width: max-content;
   padding-bottom: 20px;
 }
 
@@ -204,7 +204,15 @@ input.zip-city {
   padding: 0px;
   text-align: center;
   font-size: 12px;
+}
 
+
+.forecast-hourly-icon{
+  height: 30px;
+}
+
+.forecast-daily-icon{
+  height: 30px;
 }
 
 .col-9 {
@@ -212,10 +220,17 @@ input.zip-city {
   border-radius: 0.75ch;
   border-style: ridge;
   margin: 0 auto;
-  width: max-content;
-  max-width: 100%;
+  min-width: max-content;
+  padding: 0px 20px;
 }
 
+.col-1.col-sm-1.days {
+  color: #ffffffbb;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+  min-width: max-content;
+}
 .col-1.col-sm-1.dailyLastDay {
   max-width: min-content;
 }
@@ -224,6 +239,7 @@ input.zip-city {
   text-align: center;
   font-size: 7px;
 }
+
 
 .open-source{
   font-size: 10px;

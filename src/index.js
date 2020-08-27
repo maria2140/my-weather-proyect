@@ -32,8 +32,8 @@ function showSearchedLocation (response){
   let currentWind = response.data.wind.speed;
   displayWind.innerHTML = `${currentWind} km/h`;
   
-  let currentIcon = document.querySelector("#icon");
-  currentIcon.setAttribute("src", `https://image.flaticon.com/icons/svg/1163/1163662.svg`);
+  let searchedIcon = document.querySelector("#icon");
+  searchedIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   icon.setAttribute("alt", response.data.weather[0].description );
   
   
@@ -104,6 +104,11 @@ function showCurrentLocation (response){
   let currentWind = response.data.wind.speed;
   displayWind.innerHTML = currentWind;
 
+
+  let currentIcon = document.querySelector("#icon");
+  currentIcon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  icon.setAttribute("alt", response.data.weather[0].description );
+
   celsiusTemperature = response.data.main.temp;
 
   let lat = response.data.coord.lat;
@@ -149,7 +154,7 @@ function displayHourlyForecast(response){
   <div class="col-1 col-sm-1">
   ${formatHours(forecast.dt * 1000)}:00
   <br />
-  ☀️
+  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
   <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
@@ -161,7 +166,7 @@ function displayHourlyForecast(response){
   <div class="col-1 col-sm-1">
   ${formatHours(forecast.dt * 1000)}:00
   <br />
-  ☀️
+  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
   <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
@@ -173,7 +178,7 @@ function displayHourlyForecast(response){
   <div class="col-1 col-sm-1">
   ${formatHours(forecast.dt * 1000)}:00
   <br />
-  ☀️
+  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
   <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
@@ -185,7 +190,7 @@ function displayHourlyForecast(response){
   <div class="col-1 col-sm-1">
   ${formatHours(forecast.dt * 1000)}:00
   <br />
-  ☀️
+  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
   <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
@@ -197,7 +202,7 @@ function displayHourlyForecast(response){
   <div class="col-1 col-sm-1">
   ${formatHours(forecast.dt * 1000)}:00
   <br />
-  ☀️
+  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
   <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
@@ -209,7 +214,7 @@ function displayHourlyForecast(response){
   <div class="col-1 col-sm-1">
   ${formatHours(forecast.dt * 1000)}:00
   <br />
-  ☀️
+  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
   <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
@@ -221,7 +226,7 @@ function displayHourlyForecast(response){
   <div class="col-1 col-sm-1">
   ${formatHours(forecast.dt * 1000)}:00
   <br />
-  ☀️
+  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
   <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
   </div>
@@ -248,22 +253,22 @@ function displayDailyForecast(response){
   
   let forecast = response.data.daily[1];
   forecastElement.innerHTML =  `
-  <div class="col-1 col-sm-1">
+  <div class="col-1 col-sm-1 days">
   ${formatDays(forecast.dt * 1000)}
   <br/>
-  ☀️
+  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
+  <span class="next-max-min first"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
   <br/>
   </div>
   `;
 
   forecast = response.data.daily[1];
   forecastElement.innerHTML =  `
-  <div class="col-1 col-sm-1">
+  <div class="col-1 col-sm-1 days">
   ${formatDays(forecast.dt * 1000)}
   <br/>
-  ☀️
+  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
   <br/>
@@ -273,10 +278,10 @@ function displayDailyForecast(response){
     
   forecast = response.data.daily[2];
   forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1">
+  <div class="col-1 col-sm-1 days">
   ${formatDays(forecast.dt * 1000)}
   <br/>
-  ☀️
+  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
@@ -285,10 +290,10 @@ function displayDailyForecast(response){
 
   forecast = response.data.daily[3];
   forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1">
+  <div class="col-1 col-sm-1 days">
   ${formatDays(forecast.dt * 1000)}
   <br/>
-  ☀️
+  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
@@ -297,10 +302,10 @@ function displayDailyForecast(response){
 
   forecast = response.data.daily[4];
   forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1">
+  <div class="col-1 col-sm-1 days">
   ${formatDays(forecast.dt * 1000)}
   <br/>
-  ☀️
+  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
@@ -309,10 +314,10 @@ function displayDailyForecast(response){
 
   forecast = response.data.daily[5];
   forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1">
+  <div class="col-1 col-sm-1 days">
   ${formatDays(forecast.dt * 1000)}
   <br/>
-  ☀️
+  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
@@ -321,10 +326,10 @@ function displayDailyForecast(response){
   
   forecast = response.data.daily[6];
   forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1">
+  <div class="col-1 col-sm-1 days">
   ${formatDays(forecast.dt * 1000)}
   <br/>
-  ☀️
+  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
@@ -333,10 +338,10 @@ function displayDailyForecast(response){
 
   forecast = response.data.daily[7];
   forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1 dailyLastDay">
+  <div class="col-1 col-sm-1 days">
   ${formatDays(forecast.dt * 1000)}
   <br/>
-  ☀️
+  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
