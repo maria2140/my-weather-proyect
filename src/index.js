@@ -73,14 +73,6 @@ function searchedCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
   axios.get(`${apiUrl}`).then(showSearchedLocation); 
   
-  if(searchLine.value <= Error) {
-    alert(
-      `Oops... Something went wrong 😬😬`
-    );
-  } else{
-    validateUserImput();
-  }
-  
 }
 
 let searchButton = document.querySelector("#search-button");
@@ -165,92 +157,22 @@ currentLocationButton.addEventListener("click", getCurrentLocation);
 //HourlyForecasts
 
 function displayHourlyForecast(response){
-
+  console.log(response)
   let forecastElement = document.querySelector("#hourlyForecast");
-  
-  forecast = response.data.hourly[3];
-  forecastElement.innerHTML =  `                           
-  <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}:00
-  <br />
-  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
-  <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
-  </div>
-  `
-  ;
-  
-  forecast = response.data.hourly[6];
-  forecastElement.innerHTML +=  `                           
-  <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}:00
-  <br />
-  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
-  <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
-  </div>
-  `
-  ;
-  
-  forecast = response.data.hourly[9];
-  forecastElement.innerHTML +=  `                           
-  <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}:00
-  <br />
-  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
-  <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
-  </div>
-  `
-  ;
-  
-  forecast = response.data.hourly[12];
-  forecastElement.innerHTML +=  `                           
-  <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}:00
-  <br />
-  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
-  <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
-  </div>
-  `
-  ;;
-  
-  forecast = response.data.hourly[15];
-  forecastElement.innerHTML +=  `                           
-  <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}:00
-  <br />
-  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
-  <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
-  </div>
-  `
-  ;
-  
-  forecast = response.data.hourly[18];
-  forecastElement.innerHTML +=  `                           
-  <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}:00
-  <br />
-  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
-  <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
-  </div>
-  `
-  ;
-  
-  forecast = response.data.hourly[21];
-  forecastElement.innerHTML +=  `                           
-  <div class="col-1 col-sm-1">
-  ${formatHours(forecast.dt * 1000)}:00
-  <br />
-  <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
-  <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
-  </div>
-  `
-  ;  
+    forecastElement.innerHTML = null;
+    let forecast = null; 
+    for (let index = 3; index < 10; index++) {
+        forecast = response.data.hourly[index];
+        forecastElement.innerHTML += `                           
+        <div class="col-1 col-sm-1 hours">
+        ${formatHours(forecast.dt * 1000)}:00
+        <br />
+        <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
+        <br />
+        <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
+        </div>
+        `;
+      }
 }
 
 function formatHours (timestamp){
@@ -266,9 +188,11 @@ function formatHours (timestamp){
 //Daily Forecast
 
 function displayDailyForecast(response){
+  console.log(response)
+
   let forecastElement = document.querySelector("#dailyForecast");
   forecastElement.innerHTML = null;
-  let forecast = null;
+  let forecast = null; 
 
   for (let index = 1; index < 6; index++) {
     forecast = response.data.daily[index];
@@ -283,6 +207,7 @@ function displayDailyForecast(response){
     </div>
     `;
   }
+
 }
 
 function formatDays (timestamp){
@@ -291,7 +216,6 @@ function formatDays (timestamp){
   let day = days[dt.getDay()];
   return `${day}`;
 }
-
 
 // Current Date and Time
 function showTime() {
