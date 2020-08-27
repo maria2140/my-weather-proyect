@@ -203,10 +203,8 @@ input.zip-city {
   margin: 0 auto;
   padding: 0px;
   text-align: center;
-}
+  font-size: 12px;
 
-.col-1.col-sm-1.hourlySunday {
-  min-width: max-content;
 }
 
 .col-9 {
@@ -214,7 +212,17 @@ input.zip-city {
   border-radius: 0.75ch;
   border-style: ridge;
   margin: 0 auto;
-  max-width: max-content;
+  width: max-content;
+  max-width: 100%;
+}
+
+.col-1.col-sm-1.dailyLastDay {
+  max-width: min-content;
+}
+
+.next-max-min{
+  text-align: center;
+  font-size: 7px;
 }
 
 .open-source{
