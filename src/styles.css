@@ -108,18 +108,16 @@ input.zip-city {
 .row.col-2-together{
 min-width: max-content;
 width: 545px;
+}
 
 
-
+.col-1-emoji {
+  margin-left: 50px;
+  margin-right: 10px;
 }
 
 .weatherIcon {
-  height: 45px;
-  margin-left: 50px;
-}
-.col-1-emoji {
-  margin-left: 10px;
-  margin-right: 10px;
+  height: 70px;
 }
 
 .col-2.temp {

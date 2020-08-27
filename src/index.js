@@ -17,7 +17,7 @@ function showSearchedLocation (response){
   displayRealFeel.innerHTML = currentRealFeel;
   
   let displayMaximum = document.querySelector("#maximum");
-  let currentMaximum = Math.round(response.data.main.temp_min);
+  let currentMaximum = Math.round(response.data.main.temp_max);
   displayMaximum.innerHTML = currentMaximum
   
   let displayMinimum = document.querySelector("#minimum");
@@ -38,6 +38,12 @@ function showSearchedLocation (response){
   
   
   celsiusTemperature = response.data.main.temp;
+  celsiusMaximum = response.data.main.temp_max;
+  celsiusMinimum = response.data.main.temp_min;
+  celsiusRealFeel = Math.round(response.data.main.feels_like);
+  kmWind = response.data.wind.speed;
+
+
   
   currentWind = response.data.wind.speed;
   let lat = response.data.coord.lat;
@@ -90,7 +96,7 @@ function showCurrentLocation (response){
   displayRealFeel.innerHTML = currentRealFeel;
   
   let displayMaximum = document.querySelector("#maximum");
-  let currentMaximum = Math.round(response.data.main.temp_min);
+  let currentMaximum = Math.round(response.data.main.max);
   displayMaximum.innerHTML = currentMaximum
   
   let displayMinimum = document.querySelector("#minimum");
@@ -104,6 +110,7 @@ function showCurrentLocation (response){
   let displayWind = document.querySelector("#wind");
   let currentWind = response.data.wind.speed;
   displayWind.innerHTML = currentWind;
+  
 
 
   let currentIcon = document.querySelector("#icon");
@@ -111,6 +118,10 @@ function showCurrentLocation (response){
   icon.setAttribute("alt", response.data.weather[0].description );
 
   celsiusTemperature = response.data.main.temp;
+  celsiusMaximum = response.data.main.temp_max;
+  celsiusMinimum = response.data.main.temp_min;
+  celsiusRealFeel = Math.round(response.data.main.feels_like);
+  kmWind = response.data.wind.speed;
 
   let lat = response.data.coord.lat;
   let lon = response.data.coord.lon;
@@ -158,7 +169,7 @@ function displayHourlyForecast(response){
   <br />
   <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
   </div>
   `
   ;
@@ -170,7 +181,7 @@ function displayHourlyForecast(response){
   <br />
   <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
   </div>
   `
   ;
@@ -182,7 +193,7 @@ function displayHourlyForecast(response){
   <br />
   <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
   </div>
   `
   ;
@@ -194,7 +205,7 @@ function displayHourlyForecast(response){
   <br />
   <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
   </div>
   `
   ;;
@@ -206,7 +217,7 @@ function displayHourlyForecast(response){
   <br />
   <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
   </div>
   `
   ;
@@ -218,7 +229,7 @@ function displayHourlyForecast(response){
   <br />
   <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
   </div>
   `
   ;
@@ -230,7 +241,7 @@ function displayHourlyForecast(response){
   <br />
   <img class= "forecast-hourly-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />
   <br />
-  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}º</span>
+  <span class="next-max-min" style="font-size: 9px;">  ${Math.round(forecast.temp)}ºC</span>
   </div>
   `
   ;  
@@ -265,19 +276,7 @@ function displayDailyForecast(response){
   </div>
   `;
 
-  forecast = response.data.daily[1];
-  forecastElement.innerHTML =  `
-  <div class="col-1 col-sm-1 days">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
-  <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}º/${Math.round(forecast.temp.min)}º  </span> 
-  <br/>
-  </div>
-  `
-  ;
-    
+  
   forecast = response.data.daily[2];
   forecastElement.innerHTML +=  `
   <div class="col-1 col-sm-1 days">
@@ -285,11 +284,11 @@ function displayDailyForecast(response){
   <br/>
   <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}º/${Math.round(forecast.temp.min)}º  </span> 
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
   ;
-
+  
   forecast = response.data.daily[3];
   forecastElement.innerHTML +=  `
   <div class="col-1 col-sm-1 days">
@@ -297,11 +296,11 @@ function displayDailyForecast(response){
   <br/>
   <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}º/${Math.round(forecast.temp.min)}º  </span> 
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
   ;
-
+  
   forecast = response.data.daily[4];
   forecastElement.innerHTML +=  `
   <div class="col-1 col-sm-1 days">
@@ -309,11 +308,11 @@ function displayDailyForecast(response){
   <br/>
   <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}º/${Math.round(forecast.temp.min)}º  </span> 
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
   ;
-
+  
   forecast = response.data.daily[5];
   forecastElement.innerHTML +=  `
   <div class="col-1 col-sm-1 days">
@@ -321,7 +320,7 @@ function displayDailyForecast(response){
   <br/>
   <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}º/${Math.round(forecast.temp.min)}º  </span> 
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
   ;
@@ -333,25 +332,10 @@ function displayDailyForecast(response){
   <br/>
   <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
   <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}º/${Math.round(forecast.temp.min)}º  </span> 
+  <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
   ;
-
-  forecast = response.data.daily[7];
-  forecastElement.innerHTML +=  `
-  <div class="col-1 col-sm-1 days">
-  ${formatDays(forecast.dt * 1000)}
-  <br/>
-  <img class= "forecast-daily-icon" src="http://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" />  
-  <br/>
-  <span class="next-max-min"> ${Math.round(forecast.temp.max)}º/${Math.round(forecast.temp.min)}º  </span> 
-  </div>
-  `
-  ;
-
-
-
 }
 
 function formatDays (timestamp){
@@ -417,7 +401,23 @@ function toFahrenheit (event) {
   let fahrenheitElement = document.querySelector("#currentTemp");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   fahrenheitElement.innerHTML = `${Math.round(fahrenheitTemperature)} ºF`;  
+
+  let maximumElement = document.querySelector("#maximum");
+  let maximumTemperature = (celsiusMaximum * 9) / 5 + 32;
+  maximumElement.innerHTML = `${Math.round(maximumTemperature)}`;
   
+  let minimumElement = document.querySelector("#minimum");
+  let minimumTemperature = (celsiusMinimum * 9) / 5 + 32;
+  minimumElement.innerHTML = `${Math.round(minimumTemperature)}`;
+
+  let realFeelElement = document.querySelector("#realFeel");
+  let realFeelTemperature = (celsiusRealFeel * 9) / 5 + 32;
+  realFeelElement.innerHTML = `${Math.round(realFeelTemperature)}`;
+
+  let windElement = document.querySelector("#wind");
+  let windSpeed = (kmWind*0.62137119223733);
+  windElement.innerHTML = `${Math.round(windSpeed*100)/100} mph`;
+
 }
 
 
@@ -429,6 +429,21 @@ function toCelsius (event) {
   event.preventDefault();
   let celsiusElement = document.querySelector("#currentTemp");
   celsiusElement.innerHTML = `${Math.round(celsiusTemperature)} ºC`;
+
+  let maximumElement = document.querySelector("#maximum");
+  maximumElement.innerHTML = `${Math.round(celsiusMaximum)}`;
+
+  let minimumElement = document.querySelector("#minimum");
+  minimumElement.innerHTML = `${Math.round(celsiusMinimum)}`;
+
+  let realFeelElement =  document.querySelector("#realFeel");
+  realFeelElement.innerHTML = `${Math.round(celsiusRealFeel)}`;
+
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = `${Math.round(kmWind*100)/100} km/h`;
+  console.log( windElement.innerHTML)
+
+
 }
 
 let fahrenheitButton = document.querySelector("#toFahrenheit");
@@ -439,6 +454,11 @@ let celsiusButton = document.querySelector("#toCelsius");
 celsiusButton.addEventListener("click", toCelsius);
 
 let celsiusTemperature = null;
+let celsiusMaximum = null;
+let celsiusMinimum = null;
+let celsiusRealFeel= null;
+let kmWind = null;
+
 
 
 defaultCity("New York");
