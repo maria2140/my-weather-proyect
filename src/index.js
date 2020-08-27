@@ -12,16 +12,16 @@ function showSearchedLocation (response){
   displayWeatherDescription.innerHTML = currentWeaatherDescription;
   
   let displayRealFeel = document.querySelector("#realFeel");
-  let currentRealFeel = Math.round(response.data.main.feels_like);
+  let currentRealFeel = `${Math.round(response.data.main.feels_like)}ºC`;
 
   displayRealFeel.innerHTML = currentRealFeel;
   
   let displayMaximum = document.querySelector("#maximum");
-  let currentMaximum = Math.round(response.data.main.temp_max);
+  let currentMaximum = `${Math.round(response.data.main.temp_max)}ºC`;
   displayMaximum.innerHTML = currentMaximum
   
   let displayMinimum = document.querySelector("#minimum");
-  let currentMinimum = Math.round(response.data.main.temp_min);
+  let currentMinimum = `${Math.round(response.data.main.temp_min)}ºC`;
   displayMinimum.innerHTML = currentMinimum;
   
   let displayHumidity = document.querySelector("#humidity");
@@ -273,7 +273,8 @@ function displayDailyForecast(response){
     <br/>
     </div>
     `;
-  }
+    }
+
 }
 
 function formatDays (timestamp){
@@ -338,19 +339,19 @@ function toFahrenheit (event) {
   event.preventDefault();
   let fahrenheitElement = document.querySelector("#currentTemp");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  fahrenheitElement.innerHTML = `${Math.round(fahrenheitTemperature)} ºF`;  
+  fahrenheitElement.innerHTML = `${Math.round(fahrenheitTemperature)}ºF`;  
 
   let maximumElement = document.querySelector("#maximum");
   let maximumTemperature = (celsiusMaximum * 9) / 5 + 32;
-  maximumElement.innerHTML = `${Math.round(maximumTemperature)}`;
+  maximumElement.innerHTML = `${Math.round(maximumTemperature)}ºF`;  
   
   let minimumElement = document.querySelector("#minimum");
   let minimumTemperature = (celsiusMinimum * 9) / 5 + 32;
-  minimumElement.innerHTML = `${Math.round(minimumTemperature)}`;
+  minimumElement.innerHTML = `${Math.round(minimumTemperature)}ºF`;  
 
   let realFeelElement = document.querySelector("#realFeel");
   let realFeelTemperature = (celsiusRealFeel * 9) / 5 + 32;
-  realFeelElement.innerHTML = `${Math.round(realFeelTemperature)}`;
+  realFeelElement.innerHTML = `${Math.round(realFeelTemperature)}ºF`;  
 
   let windElement = document.querySelector("#wind");
   let windSpeed = (kmWind*0.62137119223733);
@@ -360,22 +361,19 @@ function toFahrenheit (event) {
 
 
 
-
-
-
 function toCelsius (event) {
   event.preventDefault();
   let celsiusElement = document.querySelector("#currentTemp");
-  celsiusElement.innerHTML = `${Math.round(celsiusTemperature)} ºC`;
+  celsiusElement.innerHTML = `${Math.round(celsiusTemperature)}ºC`;
 
   let maximumElement = document.querySelector("#maximum");
-  maximumElement.innerHTML = `${Math.round(celsiusMaximum)}`;
+  maximumElement.innerHTML = `${Math.round(celsiusMaximum)}ºC`;
 
   let minimumElement = document.querySelector("#minimum");
-  minimumElement.innerHTML = `${Math.round(celsiusMinimum)}`;
+  minimumElement.innerHTML = `${Math.round(celsiusMinimum)}ºC`;
 
   let realFeelElement =  document.querySelector("#realFeel");
-  realFeelElement.innerHTML = `${Math.round(celsiusRealFeel)}`;
+  realFeelElement.innerHTML = `${Math.round(celsiusRealFeel)}ºC`;
 
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = `${Math.round(kmWind*100)/100} km/h`;
