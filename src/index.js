@@ -72,6 +72,14 @@ function searchedCity(event) {
   let units = "metric"
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
   axios.get(`${apiUrl}`).then(showSearchedLocation); 
+  
+  if (searchLine.value.length <= 0) {
+  alert(
+    `Oops... looks like you didn't type anything  👀`
+  );
+} else {
+  validateUserImput();
+}
 }
 
 let searchButton = document.querySelector("#search-button");
@@ -139,7 +147,7 @@ function findCurrentLocation(position) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
   
   axios.get(apiUrl).then(showCurrentLocation);
-  console.log(position)
+
 }
 
 function getCurrentLocation(event) {
@@ -273,8 +281,7 @@ function displayDailyForecast(response){
     <br/>
     </div>
     `;
-    }
-
+  }
 }
 
 function formatDays (timestamp){
@@ -356,7 +363,6 @@ function toFahrenheit (event) {
   let windElement = document.querySelector("#wind");
   let windSpeed = (kmWind*0.62137119223733);
   windElement.innerHTML = `${Math.round(windSpeed*100)/100} mph`;
-
 }
 
 
@@ -377,8 +383,6 @@ function toCelsius (event) {
 
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = `${Math.round(kmWind*100)/100} km/h`;
-  console.log( windElement.innerHTML)
-
 
 }
 
