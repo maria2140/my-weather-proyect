@@ -252,6 +252,7 @@ function displayDailyForecast(response){
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
+  <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
   <br/>
   </div>
@@ -263,6 +264,7 @@ function displayDailyForecast(response){
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
+  <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}ºC/${Math.round(forecast.temp.min)}ºC</span> 
   <br/>
   </div>
@@ -275,6 +277,7 @@ function displayDailyForecast(response){
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
+  <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
@@ -286,6 +289,7 @@ function displayDailyForecast(response){
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
+  <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
@@ -297,6 +301,7 @@ function displayDailyForecast(response){
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
+  <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
@@ -308,6 +313,7 @@ function displayDailyForecast(response){
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
+  <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
@@ -319,6 +325,7 @@ function displayDailyForecast(response){
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
+  <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
@@ -330,6 +337,7 @@ function displayDailyForecast(response){
   ${formatDays(forecast.dt * 1000)}
   <br/>
   ☀️
+  <br/>
   <span class="next-max-min"> ${Math.round(forecast.temp.max)}Cº/${Math.round(forecast.temp.min)}ºC  </span> 
   </div>
   `
