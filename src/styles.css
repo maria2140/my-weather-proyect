@@ -15,7 +15,7 @@ text-transform: uppercase;
   margin-top: 20px;
   height: 620px;
   margin-left: 20px;
-  min-width: max-content;
+  min-width: 400px;
   padding-bottom: 20px;
 }
 
@@ -114,8 +114,8 @@ input.zip-city {
   padding-left: 50px;
 }
 
-.col-4.temp {
-  max-width: max-content;
+.col-2.temp {
+  min-width: max-content;
   padding-right: 0px;
   padding-left: 10px;
 }
