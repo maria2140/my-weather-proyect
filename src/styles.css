@@ -105,19 +105,30 @@ input.zip-city {
   margin-left: 30px;
 }
 
+.row.col-2-together{
+min-width: max-content;
+width: 545px;
+
+
+
+}
+
 .weatherIcon {
   height: 45px;
+  margin-left: 50px;
 }
 .col-1-emoji {
   margin-left: 10px;
   margin-right: 10px;
-  padding-left: 50px;
 }
 
 .col-2.temp {
-  min-width: max-content;
+  min-width: 37%;
   padding-right: 0px;
   padding-left: 10px;
+  position: initial;
+  width: max-content;
+  margin-right: 10px;
 }
 
 .temperature {
@@ -149,8 +160,8 @@ input.zip-city {
 .col-3.features {
   color: #ffffffd2;
   height: auto;
-  margin-right: 10px;
   min-width: max-content;
+  padding-left: 0px;
 }
 
 .tempButton {
