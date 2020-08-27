@@ -73,13 +73,14 @@ function searchedCity(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchLine.value}&appid=${apiKey}&units=${units}`;
   axios.get(`${apiUrl}`).then(showSearchedLocation); 
   
-  if (searchLine.value.length <= 0) {
-  alert(
-    `Oops... looks like you didn't type anything  👀`
-  );
-} else {
-  validateUserImput();
-}
+  if(searchLine.value <= Error) {
+    alert(
+      `Oops... Something went wrong 😬😬`
+    );
+  } else{
+    validateUserImput();
+  }
+  
 }
 
 let searchButton = document.querySelector("#search-button");
