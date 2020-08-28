@@ -240,7 +240,7 @@ function displayHourlyForecast(response){
   let forecastElement = document.querySelector("#hourlyForecast");
     forecastElement.innerHTML = null;
     let forecast = null; 
-    for (let index = 3; index < 10; index++) {
+    for (let index = 1; index < 8; index++) {
 
       let imageValue = "";
       if (response.data.hourly[index].weather[0].icon === "01d"){
